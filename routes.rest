@@ -1,0 +1,42 @@
+//w01-project/contacts.rest
+//Test project vocabulary and endpoints with sample rest operations
+
+### Create a new contact
+POST http://localhost:3000/contacts
+Content-Type: application/json
+
+{
+    "username": "eve_dev",
+    "email": "eve.dev@example.com",
+    "firstName": "Eve",
+    "lastName": "Doe",    
+    "role": "Developer",
+    "favoriteColor": "blue",
+    "projects": [
+    "Project A",
+    "Project B"
+    ],
+    "active": true,
+    "joinedDate": "2023-10-26T11:00:00.000Z",
+    "lastLoginIP": "192.168.1.102"
+}
+
+### Get all contacts
+GET http://localhost:3000/contacts
+
+### Get contact by ID
+GET http://localhost:3000/contacts/67d14888fa67385dab9fad44
+
+### Update contact by ID
+PATCH http://localhost:3000/contacts/67d14888fa67385dab9fad44
+Content-Type: application/json
+
+{
+    "username": "coder123",
+    "email": "coder139@example.com",
+    "firstName": "Alice",
+    "lastName": "Smith"
+}
+
+### Delete contact by ID
+DELETE http://localhost:3000/contacts/67d187773fcfa560ca6f42b9
