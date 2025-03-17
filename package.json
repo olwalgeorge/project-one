@@ -9,8 +9,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "startDev": "nodemon src/server.js",
-    "start": "node src/server.js"
-
+    "start": "node src/server.js",
+    "lint": "eslint .",
+    "lintFix": "eslint --fix .",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
@@ -24,6 +26,11 @@
     "mongoose": "^8.12.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "@eslint/js": "^9.22.0",
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
+    "globals": "^16.0.0",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.3"
   }
 }

@@ -1,5 +1,7 @@
 // src/config/config.js
-require('dotenv').config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV || "development"}`,
+});
 
 module.exports = {
   port: process.env.PORT || 3000,
@@ -10,5 +12,3 @@ module.exports = {
     secret: process.env.JWT_SECRET,
   },
 };
-
-
