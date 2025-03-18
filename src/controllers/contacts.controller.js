@@ -1,4 +1,4 @@
-// w01-project/app/controllers/contact.controller.js
+// w01-project/app/controllers/contacts.controller.js
 // Controller for contact routes that handle contact CRUD operations and return as JSON
 
 const Contact = require("../models/contact.model");

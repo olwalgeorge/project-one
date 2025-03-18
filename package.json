@@ -13,7 +13,8 @@
     "lintFix": "eslint --fix .",
     "format": "prettier --write .",
     "swagger-autogen": "node ./src/config/swagger.js",
-    "startDev": "nodemon src/server.js"
+    "startDev": "nodemon src/server.js",
+    "startDevSwagger": "npm run swagger-autogen && nodemon src/server.js"
   },
   "keywords": [],
   "author": "George Olwal",
