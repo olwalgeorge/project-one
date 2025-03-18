@@ -10,7 +10,12 @@ const doc = {
   host: "cse341-w02-project-1.onrender.com", // Base URL
 
   schemes: ["https"],
-  tags: [], // optional
+  tags: [
+    {
+      name: "Contacts",
+      description: "API endpoints for managing contacts",
+    },
+  ],
 };
 
 const outputFile = "../../swagger_output.json"; // Generated Swagger file
