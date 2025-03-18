@@ -7,9 +7,9 @@ const doc = {
     title: "My API",
     description: "API Documentation",
   },
-  host: "localhost:3000", //
+  host: "https://cse341-w02-project-1.onrender.com", // Base URL
 
-  schemes: ["http"],
+  schemes: ["https"],
   tags: [], // optional
 };
 
