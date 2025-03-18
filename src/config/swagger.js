@@ -6,9 +6,9 @@ const doc = {
     title: "My API",
     description: "API Documentation",
   },
-  host: "https://cse341-w02-project-1.onrender.com", // 
+  host: "https://cse341-w02-project-1.onrender.com", //
 
-  schemes: ["https"], 
+  schemes: ["https"],
   tags: [], // optional
 };
 
