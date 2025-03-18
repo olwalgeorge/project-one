@@ -10,11 +10,17 @@ const {
 
 /**
  * @swagger
+ * tags:
+ *   name: Contacts
+ *   description: API endpoints for managing contacts
+ */
+
+/**
+ * @swagger
  * /contacts:
  *   post:
- *     tags:
- *       - Contacts
  *     summary: Create a new contact
+ *     tags: [Contacts]
  *     requestBody:
  *       required: true
  *       content:
@@ -38,20 +44,21 @@ const {
  *       500:
  *         description: Internal Server Error
  *   get:
- *     tags:
- *       - Contacts
  *     summary: Get all contacts
+ *     tags: [Contacts]
  *     responses:
  *       200:
  *         description: OK
  *       500:
  *         description: Internal Server Error
- *
+ */
+
+/**
+ * @swagger
  * /contacts/{contactId}:
  *   get:
- *     tags:
- *       - Contacts
  *     summary: Get a contact by ID
+ *     tags: [Contacts]
  *     parameters:
  *       - in: path
  *         name: contactId
@@ -67,9 +74,8 @@ const {
  *       500:
  *         description: Internal Server Error
  *   patch:
- *     tags:
- *       - Contacts
  *     summary: Update a contact by ID
+ *     tags: [Contacts]
  *     parameters:
  *       - in: path
  *         name: contactId
@@ -102,9 +108,8 @@ const {
  *       500:
  *         description: Internal Server Error
  *   delete:
- *     tags:
- *       - Contacts
  *     summary: Delete a contact by ID
+ *     tags: [Contacts]
  *     parameters:
  *       - in: path
  *         name: contactId
@@ -129,3 +134,4 @@ routes
   .delete("/:contactId", deleteContact);
 
 module.exports = routes;
+

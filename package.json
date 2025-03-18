@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run swagger-autogen && node src/server.js",
+    "start": "npm run swagger-autogen",
     "lint": "eslint .",
     "lintFix": "eslint --fix .",
     "format": "prettier --write .",
