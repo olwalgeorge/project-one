@@ -6,9 +6,10 @@ const doc = {
     title: "My API",
     description: "API Documentation",
   },
-  host: "localhost:3000", // Your server URL
-  schemes: ["http"], // or ['https'] for production
-  tags: [], // Optional: Define tags for grouping endpoints
+  host: "https://cse341-w02-project-1.onrender.com", // 
+
+  schemes: ["https"], 
+  tags: [], // optional
 };
 
 const outputFile = "../../swagger_output.json"; // Generated Swagger file
