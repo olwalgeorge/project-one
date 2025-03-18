@@ -16,7 +16,7 @@
     "startDev": "nodemon src/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "George Olwal",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
