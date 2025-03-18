@@ -16,4 +16,3 @@ const endpointsFiles = ["../routes/index.js"]; // Paths to routes
 
 // Generate Swagger file on startup
 swaggerAutogen(outputFile, endpointsFiles, doc);
-

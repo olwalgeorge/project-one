@@ -1,5 +1,5 @@
 // src/services/contacts.service.js
-const Contact = require('../models/contact.model');
+const Contact = require("../models/contact.model");
 
 async function createContact(contactData) {
   const contact = new Contact(contactData);
@@ -29,4 +29,3 @@ module.exports = {
   updateContact,
   deleteContact,
 };
-

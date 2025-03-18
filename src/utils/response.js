@@ -11,7 +11,7 @@ function error(res, statusCode, message, error) {
   res.status(statusCode).json({
     success: false,
     message,
-    error: error ? error.message : null, 
+    error: error ? error.message : null,
   });
 }
 
