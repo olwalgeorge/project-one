@@ -3,6 +3,7 @@ const routes = express.Router();
 const {
   createContact,
   getAllContacts,
+  getDevelopers,
   getContactById,
   updateContact,
   replaceContact,
@@ -166,10 +167,6 @@ const {
  *                 stack: Error: Failed to delete all contacts
  *                 at deleteAllContacts (C:\Users\john\Documents\GitHub\w01-project\src\controllers\contacts.controller.js:73:19)
  *                 at processTicksAndRejections (internal/process/task_queues.js:93:5)
- */
-
-/**
- * @swagger
  * /contacts/{contactId}:
  *   get:
  *     summary: Get a contact by ID
@@ -342,11 +339,58 @@ const {
  *                 name: Error
  *                 message: Failed to update contact
  *                 stack: Error: Failed to update contact
+ * /contacts/developer:
+ *   get:
+ *     summary: Get all contacts with the Developer role
+ *     tags: [Contacts]
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                   firstName:
+ *                     type: string
+ *                   lastName:
+ *                     type: string
+ *                   email:
+ *                     type: string
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     name:
+ *                       type: string
+ *                     message:
+ *                       type: string
+ *                     stack:
+ *                       type: string
+ *             example:
+ *               message: Failed to retrieve developers
+ *               error:
+ *                 name: Error
+ *                 message: Failed to retrieve developers
+ *                 stack: Error: Failed to retrieve developers
  */
 
 routes
   .post("/", createContact)
   .get("/", getAllContacts)
+  .get("/developer", getDevelopers)
   .get("/:contactId", getContactById)
   .patch("/:contactId", updateContact)
   .put("/:contactId", replaceContact)

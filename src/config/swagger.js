@@ -6,7 +6,7 @@ const doc = {
     title: "My API",
     description: "API Documentation",
   },
-  host: "localhost", // Base URL
+  host: "localhost:3000", // Base URL
 
   schemes: ["http"],
   tags: [

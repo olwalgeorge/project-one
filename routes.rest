@@ -46,16 +46,17 @@ PUT http://localhost:3000/contacts/67daa208b432578cae3dd197
 Content-Type: application/json
 
 {
-    "contact_id": "11",
-    "username": "tech_savvy",
+    "contact_id": "11",    
     "email": "tech.savvy@example.com",
     "first_name": "Toby4",
     "last_name": "Lewis"
 }
 
 ### Delete contact by ID
-DELETE http://localhost:3000/contacts/67d9b5905add53df708f7bff
+DELETE http://localhost:3000/contacts/67daa208b432578cae3dd197
 
 ### Delete all contacts
 DELETE http://localhost:3000/contacts
 
+### Get all contacts with role "Developer"
+GET http://localhost:3000/contacts/developer

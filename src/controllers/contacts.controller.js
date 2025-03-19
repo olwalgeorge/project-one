@@ -42,7 +42,7 @@ const updateContact = async (req, res) => {
     if (!updatedContact) {
       return response.error(res, 404, "Contact not found");
     }
-    response.success(res, 200, "Contact updated", updatedContact);
+    response.success(res, 200, "Contact patched", updatedContact);
   } catch (error) {
     response.error(res, 500, "Failed to update contact", error);
   }
@@ -82,9 +82,22 @@ const deleteAllContacts = async (req, res) => {
   }
 };
 
+const getDevelopers = async (req, res) => {
+  try {
+    const developers = await contactsService.getDevelopers();
+    response.success(res, 200, "All developers listed", developers);
+    if (!getDevelopers) {
+      return response.error(res, 404, "Developers not found");
+    }
+  } catch (error) {
+    response.error(res, 500, "Failed to retrieve developer", error);
+  }
+};
+
 module.exports = {
   createContact,
   getAllContacts,
+  getDevelopers,
   getContactById,
   updateContact,
   replaceContact,

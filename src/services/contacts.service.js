@@ -17,27 +17,23 @@ async function getContactById(contactId) {
 
 // Patch contact
 async function updateContact(contactId, updateData) {
-  return Contact.findByIdAndUpdate(contactId, updateData, { new: true }, {runValidators: true});
+  return Contact.findByIdAndUpdate(
+    contactId,
+    updateData,
+    { new: true },
+    { runValidators: true }
+  );
 }
 
 // Put contact
-async function replaceContact(contactId, replaceData) { 
-  // First check if contact exists
-  const existingContact = await Contact.findById(contactId);
-  if (!existingContact) {
-    return null;
-  }
-
-  // Replace the contact
-  return Contact.findByIdAndUpdate(
-    contactId,
-    replaceData, 
-    { new: true, overwrite: true, runValidators: true} 
-  )
-  
+async function replaceContact(contactId, replaceData) {
+  return Contact.findOneAndReplace(
+    { _id: contactId },
+    replaceData,
+    { new: true },
+    { runValidators: true }
+  );
 }
-
-
 
 async function deleteContact(contactId) {
   return Contact.findByIdAndDelete(contactId);
@@ -47,9 +43,14 @@ async function deleteAllContacts() {
   return Contact.deleteMany();
 }
 
+async function getDevelopers() {
+  return Contact.find({ role: "Developer" });
+}
+
 module.exports = {
   createContact,
   getAllContacts,
+  getDevelopers,
   getContactById,
   updateContact,
   replaceContact,

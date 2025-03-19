@@ -5,7 +5,7 @@
     "description": "API Documentation",
     "version": "1.0.0"
   },
-  "host": "cse341-w02-project-1.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "tags": [
     {
@@ -13,7 +13,9 @@
       "description": "API endpoints for managing contacts"
     }
   ],
-  "schemes": ["https"],
+  "schemes": [
+    "http"
+  ],
   "paths": {
     "/": {
       "get": {
@@ -51,6 +53,16 @@
         }
       }
     },
+    "/contacts/developer": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/contacts/{contactId}": {
       "get": {
         "description": "",
@@ -69,6 +81,22 @@
         }
       },
       "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "contactId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
         "description": "",
         "parameters": [
           {
