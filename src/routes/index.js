@@ -1,5 +1,3 @@
-
-
 /**
  * This is the main routes module. It handles the root path and
  * delegates the contacts routes to the contacts routes module.

@@ -13,9 +13,7 @@
       "description": "API endpoints for managing contacts"
     }
   ],
-  "schemes": [
-    "https"
-  ],
+  "schemes": ["https"],
   "paths": {
     "/": {
       "get": {
@@ -37,6 +35,14 @@
         }
       },
       "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
         "description": "",
         "responses": {
           "default": {

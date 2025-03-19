@@ -1,3 +1,5 @@
 .env.developement
 .env.production
 node_modules
+*.txt
+data.json

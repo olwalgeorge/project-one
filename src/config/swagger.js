@@ -1,15 +1,14 @@
 // swagger.js
 const swaggerAutogen = require("swagger-autogen")();
 
-
 const doc = {
   info: {
     title: "My API",
     description: "API Documentation",
   },
-  host: "cse341-w02-project-1.onrender.com", // Base URL
+  host: "localhost", // Base URL
 
-  schemes: ["https"],
+  schemes: ["http"],
   tags: [
     {
       name: "Contacts",
