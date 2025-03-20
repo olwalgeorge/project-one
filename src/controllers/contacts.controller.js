@@ -7,7 +7,12 @@ const createContact = async (req, res) => {
     await contactsService.createContact(req.body);
     response.success(res, 201, "Contact created successfully");
   } catch (error) {
-    response.error(res, 500, "Failed to create contact: " + error.message, error);
+    response.error(
+      res,
+      500,
+      "Failed to create contact: " + error.message,
+      error
+    );
   }
 };
 
@@ -16,7 +21,12 @@ const getAllContacts = async (req, res) => {
     const contacts = await contactsService.getAllContacts();
     response.success(res, 200, "Contacts retrieved successfully", contacts);
   } catch (error) {
-    response.error(res, 500, "Failed to retrieve contacts: " + error.message, error);
+    response.error(
+      res,
+      500,
+      "Failed to retrieve contacts: " + error.message,
+      error
+    );
   }
 };
 
@@ -28,7 +38,12 @@ const getContactById = async (req, res) => {
     }
     response.success(res, 200, "Contact retrieved successfully", contact);
   } catch (error) {
-    response.error(res, 500, "Failed to retrieve contact: " + error.message, error);
+    response.error(
+      res,
+      500,
+      "Failed to retrieve contact: " + error.message,
+      error
+    );
   }
 };
 
@@ -43,7 +58,12 @@ const updateContact = async (req, res) => {
     }
     response.success(res, 200, "Contact patched successfully", updatedContact);
   } catch (error) {
-    response.error(res, 500, "Failed to update contact: " + error.message, error);
+    response.error(
+      res,
+      500,
+      "Failed to update contact: " + error.message,
+      error
+    );
   }
 };
 
@@ -58,7 +78,12 @@ const replaceContact = async (req, res) => {
     }
     response.success(res, 200, "Contact replaced successfully", updatedContact);
   } catch (error) {
-    response.error(res, 500, "Failed to replace contact: " + error.message, error);
+    response.error(
+      res,
+      500,
+      "Failed to replace contact: " + error.message,
+      error
+    );
   }
 };
 
@@ -67,7 +92,12 @@ const deleteContact = async (req, res) => {
     await contactsService.deleteContact(req.params.contactId);
     response.success(res, 200, "Contact deleted successfully");
   } catch (error) {
-    response.error(res, 500, "Failed to delete contact: " + error.message, error);
+    response.error(
+      res,
+      500,
+      "Failed to delete contact: " + error.message,
+      error
+    );
   }
 };
 
@@ -76,7 +106,12 @@ const deleteAllContacts = async (req, res) => {
     await contactsService.deleteAllContacts();
     response.success(res, 200, "All contacts deleted successfully");
   } catch (error) {
-    response.error(res, 500, "Failed to delete all contacts: " + error.message, error);
+    response.error(
+      res,
+      500,
+      "Failed to delete all contacts: " + error.message,
+      error
+    );
   }
 };
 
@@ -86,9 +121,19 @@ const getDevelopers = async (req, res) => {
     if (!developers || developers.length === 0) {
       return response.error(res, 404, "Developers not found");
     }
-    response.success(res, 200, "All developers listed successfully", developers);
+    response.success(
+      res,
+      200,
+      "All developers listed successfully",
+      developers
+    );
   } catch (error) {
-    response.error(res, 500, "Failed to retrieve developers: " + error.message, error);
+    response.error(
+      res,
+      500,
+      "Failed to retrieve developers: " + error.message,
+      error
+    );
   }
 };
 
