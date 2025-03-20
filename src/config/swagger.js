@@ -20,11 +20,8 @@ const doc = {
 const outputFile = "../../swagger_output.json"; // Generated Swagger file
 const endpointsFiles = ["../routes/index.js"]; // Paths to routes
 
-// Generate Swagger file on startup the run server
-swaggerAutogen(outputFile, endpointsFiles, doc)
-  .then(() => {
-    require("../server");
-  })
-  .catch((error) => {
-    console.error("Error generating Swagger documentation:", error);
-  });
+// Generate Swagger file on startup then run server
+swaggerAutogen(outputFile, endpointsFiles, doc).then(() => require("../server")).catch((error) => {
+  console.error("Error generating Swagger documentation:", error);
+});
+
