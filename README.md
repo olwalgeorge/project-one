@@ -23,25 +23,37 @@ The server will run on http://localhost:3000.
 
 ## API Endpoints
 
-### GET /api/contacts
-
-Get all contacts.
-
-### GET /api/contacts/:contactId
-
-Get a contact by ID.
-
-### POST /api/contacts
+### POST /contacts
 
 Create a new contact.
 
-### PATCH /api/contacts/:contactId
+### GET /contacts
 
-Update a contact by ID.
+Get all contacts.
 
-### DELETE /api/contacts/:contactId
+### GET /contacts/:contactId
 
-Delete a contact by ID.
+Get contact by ID.
+
+### PATCH /contacts/:contactId
+
+Update contact by ID.
+
+### PUT /contacts/:contactId
+
+Update contact by ID using PUT.
+
+### DELETE /contacts/:contactId
+
+Delete contact by ID.
+
+### DELETE /contacts
+
+Delete all contacts.
+
+### GET /contacts/developer
+
+Get all contacts with role "Developer".
 
 ## Swagger Documentation
 
