@@ -1,4 +1,4 @@
-.env.developement
+.env.development
 .env.production
 node_modules
 *.txt
