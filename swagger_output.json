@@ -7,25 +7,32 @@
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "schemes": [
-    "http"
+  "tags": [
+    {
+      "name": "Home",
+      "description": "Welcome page with a link to the API documentation"
+    },
+    {
+      "name": "Contacts",
+      "description": "Endpoints related to contact operations"
+    }
   ],
+  "schemes": ["http"],
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "tags": ["Home"],
+        "description": "Home page with a link to the API documentation",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Welcome message"
           }
         }
       }
     },
     "/contacts/": {
       "post": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to create a new contact",
         "parameters": [
           {
@@ -213,9 +220,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to retrieve all contacts",
         "responses": {
           "200": {
@@ -227,9 +232,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to delete all contacts",
         "responses": {
           "200": {
@@ -243,13 +246,14 @@
     },
     "/contacts/developer": {
       "get": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to retrieve all developers",
         "responses": {
           "200": {
             "description": "All developers listed successfully"
+          },
+          "404": {
+            "description": "Developers not found"
           },
           "500": {
             "description": "Failed to retrieve developers"
@@ -259,16 +263,14 @@
     },
     "/contacts/{contactId}": {
       "get": {
-        "tags": [
-          "Contacts"
-        ],
-        "description": "Endpoint to retrieve a contact by ID",
+        "tags": ["Contacts"],
+        "description": "Endpoint to retrieve a contact by id",
         "parameters": [
           {
             "name": "contactId",
             "in": "path",
             "required": true,
-            "type": "string",
+            "type": "number",
             "description": "ID of the contact"
           }
         ],
@@ -285,16 +287,14 @@
         }
       },
       "patch": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to update a contact",
         "parameters": [
           {
             "name": "contactId",
             "in": "path",
             "required": true,
-            "type": "string",
+            "type": "number",
             "description": "ID of the contact"
           },
           {
@@ -303,13 +303,165 @@
             "description": "Updated contact data",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Contact"
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "required": {
+                          "type": "boolean",
+                          "example": true
+                        }
+                      }
+                    },
+                    "email": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "required": {
+                          "type": "boolean",
+                          "example": true
+                        }
+                      }
+                    },
+                    "first_name": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "last_name": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "birthday": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "format": {
+                          "type": "string",
+                          "example": "date"
+                        }
+                      }
+                    },
+                    "role": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "enum": {
+                          "type": "array",
+                          "example": [
+                            "Developer",
+                            "Designer",
+                            "Administrator",
+                            "Tester",
+                            "Analyst"
+                          ],
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "default": {
+                          "type": "string",
+                          "example": "Developer"
+                        }
+                      }
+                    },
+                    "favorite_color": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "projects": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "array"
+                        },
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "example": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "active": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "boolean"
+                        }
+                      }
+                    },
+                    "joined_date": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "format": {
+                          "type": "string",
+                          "example": "date"
+                        }
+                      }
+                    },
+                    "last_login_ip": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Contact patched successfully"
+            "description": "Contact updated successfully"
           },
           "404": {
             "description": "Contact not found"
@@ -320,16 +472,14 @@
         }
       },
       "put": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to replace a contact",
         "parameters": [
           {
             "name": "contactId",
             "in": "path",
             "required": true,
-            "type": "string",
+            "type": "number",
             "description": "ID of the contact"
           },
           {
@@ -338,7 +488,159 @@
             "description": "New contact data",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Contact"
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "required": {
+                          "type": "boolean",
+                          "example": true
+                        }
+                      }
+                    },
+                    "email": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "required": {
+                          "type": "boolean",
+                          "example": true
+                        }
+                      }
+                    },
+                    "first_name": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "last_name": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "birthday": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "format": {
+                          "type": "string",
+                          "example": "date"
+                        }
+                      }
+                    },
+                    "role": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "enum": {
+                          "type": "array",
+                          "example": [
+                            "Developer",
+                            "Designer",
+                            "Administrator",
+                            "Tester",
+                            "Analyst"
+                          ],
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "default": {
+                          "type": "string",
+                          "example": "Developer"
+                        }
+                      }
+                    },
+                    "favorite_color": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "projects": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "array"
+                        },
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "example": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "active": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "boolean"
+                        }
+                      }
+                    },
+                    "joined_date": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "format": {
+                          "type": "string",
+                          "example": "date"
+                        }
+                      }
+                    },
+                    "last_login_ip": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         ],
@@ -355,16 +657,14 @@
         }
       },
       "delete": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to delete a contact",
         "parameters": [
           {
             "name": "contactId",
             "in": "path",
             "required": true,
-            "type": "string",
+            "type": "number",
             "description": "ID of the contact"
           }
         ],
@@ -377,176 +677,6 @@
           },
           "500": {
             "description": "Failed to delete contact"
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "Contact": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "example": "object"
-        },
-        "properties": {
-          "type": "object",
-          "properties": {
-            "contact_id": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "number"
-                },
-                "required": {
-                  "type": "boolean",
-                  "example": true
-                }
-              }
-            },
-            "username": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "required": {
-                  "type": "boolean",
-                  "example": true
-                }
-              }
-            },
-            "email": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "required": {
-                  "type": "boolean",
-                  "example": true
-                }
-              }
-            },
-            "first_name": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                }
-              }
-            },
-            "last_name": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                }
-              }
-            },
-            "birthday": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "format": {
-                  "type": "string",
-                  "example": "date"
-                }
-              }
-            },
-            "role": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "enum": {
-                  "type": "array",
-                  "example": [
-                    "Developer",
-                    "Designer",
-                    "Administrator",
-                    "Tester",
-                    "Analyst"
-                  ],
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "default": {
-                  "type": "string",
-                  "example": "Developer"
-                }
-              }
-            },
-            "favorite_color": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                }
-              }
-            },
-            "projects": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "array"
-                },
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "string"
-                    }
-                  }
-                }
-              }
-            },
-            "active": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "boolean"
-                }
-              }
-            },
-            "joined_date": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "format": {
-                  "type": "string",
-                  "example": "date"
-                }
-              }
-            },
-            "last_login_ip": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                }
-              }
-            }
           }
         }
       }
