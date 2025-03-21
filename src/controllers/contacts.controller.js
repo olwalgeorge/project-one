@@ -3,7 +3,7 @@ const contactsService = require("../services/contacts.service");
 const response = require("../utils/response");
 
 const createContact = async (req, res) => {
- /* #swagger.tags = ['Contacts'] */
+  /* #swagger.tags = ['Contacts'] */
   /* #swagger.description = 'Endpoint to create a new contact' */
   /* #swagger.parameters['body'] = {
       in: 'body',
@@ -206,4 +206,3 @@ module.exports = {
   deleteContact,
   deleteAllContacts,
 };
-
