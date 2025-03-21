@@ -90,9 +90,9 @@ const getContactById = async (req, res) => {
 const updateContact = async (req, res) => {
   // #swagger.tags = ['Contacts']
   // #swagger.description = 'Endpoint to update a contact'
-  /* #swagger.parameters['contact_id'] = {
+  /* #swagger.parameters['_id'] = {
       in: 'path',
-      description: 'ID of the contact',
+      description: 'Internal ID of the contact',
       required: true,
       type: 'string'
     } */
@@ -142,9 +142,9 @@ const updateContact = async (req, res) => {
 const replaceContact = async (req, res) => {
   // #swagger.tags = ['Contacts']
   // #swagger.description = 'Endpoint to replace a contact'
-  /* #swagger.parameters['contact_id'] = {
+  /* #swagger.parameters['_id'] = {
       in: 'path',
-      description: 'ID of the contact',
+      description: 'internal ID of the contact',
       required: true,
       type: 'string'
     } */
@@ -194,9 +194,9 @@ const replaceContact = async (req, res) => {
 const deleteContact = async (req, res) => {
   // #swagger.tags = ['Contacts']
   // #swagger.description = 'Endpoint to delete a contact'
-  /* #swagger.parameters['contact_id'] = {
+  /* #swagger.parameters['_id'] = {
       in: 'path',
-      description: 'ID of the contact',
+      description: 'internal ID of the contact',
       required: true,
       type: 'string'
     } */
