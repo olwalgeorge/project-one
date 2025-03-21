@@ -94,7 +94,7 @@ const updateContact = async (req, res) => {
       in: 'path',
       description: 'ID of the contact',
       required: true,
-      type: 'number'
+      type: 'string'
     } */
   /* #swagger.parameters['body'] = {
       in: 'body',
@@ -146,7 +146,7 @@ const replaceContact = async (req, res) => {
       in: 'path',
       description: 'ID of the contact',
       required: true,
-      type: 'number'
+      type: 'string'
     } */
   /* #swagger.parameters['body'] = {
       in: 'body',
@@ -198,7 +198,7 @@ const deleteContact = async (req, res) => {
       in: 'path',
       description: 'ID of the contact',
       required: true,
-      type: 'number'
+      type: 'string'
     } */
   // #swagger.responses[200] = { description: 'Contact deleted successfully' }
   // #swagger.responses[404] = { description: 'Contact not found' }

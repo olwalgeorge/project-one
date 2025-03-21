@@ -17,15 +17,11 @@
       "description": "Endpoints related to contact operations"
     }
   ],
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["https"],
   "paths": {
     "/": {
       "get": {
-        "tags": [
-          "Home"
-        ],
+        "tags": ["Home"],
         "description": "Home page with a link to the API documentation",
         "responses": {
           "200": {
@@ -36,9 +32,7 @@
     },
     "/contacts/": {
       "post": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to create a new contact",
         "parameters": [
           {
@@ -226,9 +220,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to retrieve all contacts",
         "responses": {
           "200": {
@@ -240,9 +232,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to delete all contacts",
         "responses": {
           "200": {
@@ -256,9 +246,7 @@
     },
     "/contacts/developer": {
       "get": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to retrieve all developers",
         "responses": {
           "200": {
@@ -275,9 +263,7 @@
     },
     "/contacts/{contactId}": {
       "get": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to retrieve a contact by id",
         "parameters": [
           {
@@ -301,16 +287,14 @@
         }
       },
       "patch": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to update a contact",
         "parameters": [
           {
             "name": "contactId",
             "in": "path",
             "required": true,
-            "type": "number",
+            "type": "string",
             "description": "ID of the contact"
           },
           {
@@ -488,16 +472,14 @@
         }
       },
       "put": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to replace a contact",
         "parameters": [
           {
             "name": "contactId",
             "in": "path",
             "required": true,
-            "type": "number",
+            "type": "string",
             "description": "ID of the contact"
           },
           {
@@ -675,16 +657,14 @@
         }
       },
       "delete": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "Endpoint to delete a contact",
         "parameters": [
           {
             "name": "contactId",
             "in": "path",
             "required": true,
-            "type": "number",
+            "type": "string",
             "description": "ID of the contact"
           }
         ],
