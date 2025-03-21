@@ -13,6 +13,9 @@ const {
   deleteAllContacts,
 } = require("../controllers/contacts.controller");
 
+/* #swagger.tags = ['Contacts'] */
+/* #swagger.description = 'Routes for managing contacts' */
+
 routes
   .post("/", createContact)
   .get("/", getAllContacts)
