@@ -90,7 +90,7 @@ const getContactById = async (req, res) => {
 const updateContact = async (req, res) => {
   // #swagger.tags = ['Contacts']
   // #swagger.description = 'Endpoint to update a contact'
-  /* #swagger.parameters['contactId'] = {
+  /* #swagger.parameters['contact_id'] = {
       in: 'path',
       description: 'ID of the contact',
       required: true,
@@ -122,7 +122,7 @@ const updateContact = async (req, res) => {
   // #swagger.responses[500] = { description: 'Failed to update contact' }
   try {
     const updatedContact = await contactsService.updateContact(
-      req.params.contactId,
+      req.params._id,
       req.body
     );
     if (!updatedContact) {
@@ -142,7 +142,7 @@ const updateContact = async (req, res) => {
 const replaceContact = async (req, res) => {
   // #swagger.tags = ['Contacts']
   // #swagger.description = 'Endpoint to replace a contact'
-  /* #swagger.parameters['contactId'] = {
+  /* #swagger.parameters['contact_id'] = {
       in: 'path',
       description: 'ID of the contact',
       required: true,
@@ -174,7 +174,7 @@ const replaceContact = async (req, res) => {
   // #swagger.responses[500] = { description: 'Failed to replace contact' }
   try {
     const updatedContact = await contactsService.replaceContact(
-      req.params.contactId,
+      req.params._id,
       req.body
     );
     if (!updatedContact) {
@@ -194,7 +194,7 @@ const replaceContact = async (req, res) => {
 const deleteContact = async (req, res) => {
   // #swagger.tags = ['Contacts']
   // #swagger.description = 'Endpoint to delete a contact'
-  /* #swagger.parameters['contactId'] = {
+  /* #swagger.parameters['contact_id'] = {
       in: 'path',
       description: 'ID of the contact',
       required: true,
@@ -204,7 +204,7 @@ const deleteContact = async (req, res) => {
   // #swagger.responses[404] = { description: 'Contact not found' }
   // #swagger.responses[500] = { description: 'Failed to delete contact' }
   try {
-    await contactsService.deleteContact(req.params.contactId);
+    await contactsService.deleteContact(req.params._id);
     response.success(res, 200, "Contact deleted successfully");
   } catch (error) {
     response.error(

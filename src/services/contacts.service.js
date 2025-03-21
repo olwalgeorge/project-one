@@ -16,9 +16,9 @@ async function getContactById(contactId) {
 }
 
 // Patch contact
-async function updateContact(contactId, updateData) {
+async function updateContact(_id, updateData) {
   return Contact.findByIdAndUpdate(
-    contactId,
+    { _id: _id },
     updateData,
     { new: true },
     { runValidators: true }
@@ -26,17 +26,17 @@ async function updateContact(contactId, updateData) {
 }
 
 // Put contact
-async function replaceContact(contactId, replaceData) {
+async function replaceContact(_id, replaceData) {
   return Contact.findOneAndReplace(
-    { _id: contactId },
+    { _id: _id },
     replaceData,
     { new: true },
     { runValidators: true }
   );
 }
 
-async function deleteContact(contactId) {
-  return Contact.findByIdAndDelete(contactId);
+async function deleteContact(_id) {
+  return Contact.findByIdAndDelete(_id);
 }
 
 async function deleteAllContacts() {

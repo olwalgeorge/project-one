@@ -20,9 +20,9 @@ routes
   .get("/", getAllContacts)
   .get("/developer", getDevelopers)
   .get("/:contactId", getContactById)
-  .patch("/:contactId", updateContact)
-  .put("/:contactId", replaceContact)
-  .delete("/:contactId", deleteContact)
+  .patch("/:_id", updateContact)
+  .put("/:_id", replaceContact)
+  .delete("/:_id", deleteContact)
   .delete("/", deleteAllContacts);
 
 module.exports = routes;
