@@ -5,7 +5,7 @@
     "description": "API documentation for the Contacts service",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse341-w02-project-1.onrender.com",
   "basePath": "/",
   "tags": [
     {
@@ -17,11 +17,15 @@
       "description": "Endpoints related to contact operations"
     }
   ],
-  "schemes": ["http"],
+  "schemes": [
+    "http"
+  ],
   "paths": {
     "/": {
       "get": {
-        "tags": ["Home"],
+        "tags": [
+          "Home"
+        ],
         "description": "Home page with a link to the API documentation",
         "responses": {
           "200": {
@@ -32,7 +36,9 @@
     },
     "/contacts/": {
       "post": {
-        "tags": ["Contacts"],
+        "tags": [
+          "Contacts"
+        ],
         "description": "Endpoint to create a new contact",
         "parameters": [
           {
@@ -220,7 +226,9 @@
         }
       },
       "get": {
-        "tags": ["Contacts"],
+        "tags": [
+          "Contacts"
+        ],
         "description": "Endpoint to retrieve all contacts",
         "responses": {
           "200": {
@@ -232,7 +240,9 @@
         }
       },
       "delete": {
-        "tags": ["Contacts"],
+        "tags": [
+          "Contacts"
+        ],
         "description": "Endpoint to delete all contacts",
         "responses": {
           "200": {
@@ -246,7 +256,9 @@
     },
     "/contacts/developer": {
       "get": {
-        "tags": ["Contacts"],
+        "tags": [
+          "Contacts"
+        ],
         "description": "Endpoint to retrieve all developers",
         "responses": {
           "200": {
@@ -263,7 +275,9 @@
     },
     "/contacts/{contactId}": {
       "get": {
-        "tags": ["Contacts"],
+        "tags": [
+          "Contacts"
+        ],
         "description": "Endpoint to retrieve a contact by id",
         "parameters": [
           {
@@ -287,7 +301,9 @@
         }
       },
       "patch": {
-        "tags": ["Contacts"],
+        "tags": [
+          "Contacts"
+        ],
         "description": "Endpoint to update a contact",
         "parameters": [
           {
@@ -472,7 +488,9 @@
         }
       },
       "put": {
-        "tags": ["Contacts"],
+        "tags": [
+          "Contacts"
+        ],
         "description": "Endpoint to replace a contact",
         "parameters": [
           {
@@ -657,7 +675,9 @@
         }
       },
       "delete": {
-        "tags": ["Contacts"],
+        "tags": [
+          "Contacts"
+        ],
         "description": "Endpoint to delete a contact",
         "parameters": [
           {

@@ -7,7 +7,7 @@ const doc = {
     description: "API documentation for the Contacts service",
   },
   host: "cse341-w02-project-1.onrender.com",
-  schemes: ["http"],
+  schemes: ["https"],
   tags: [
     {
       name: "Home",
