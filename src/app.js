@@ -16,7 +16,7 @@ app.use(cors());
 // Serve Swagger UI at /api-docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
-// Define your routes
+// Define routes
 app.use(routes);
 
 // Connect to the database
