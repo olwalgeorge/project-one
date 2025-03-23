@@ -1,10 +1,10 @@
-// src/app.js
 const express = require("express");
 const routes = require("./routes");
 const connectDB = require("./config/database");
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("../swagger_output.json");
 const cors = require("cors");
+const { errorHandler } = require('./middlewares/error.middleware');
 
 const app = express();
 
@@ -16,8 +16,13 @@ app.use(cors());
 // Serve Swagger UI at /api-docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
+// Define your routes
 app.use(routes);
 
+// Connect to the database
 connectDB();
+
+// Error handling middleware should be the last middleware
+app.use(errorHandler);
 
 module.exports = app;

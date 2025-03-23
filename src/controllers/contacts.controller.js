@@ -1,248 +1,106 @@
 const contactsService = require("../services/contacts.service");
 const response = require("../utils/response");
 
-const createContact = async (req, res) => {
-  /* #swagger.tags = ['Contacts'] */
-  /* #swagger.description = 'Endpoint to create a new contact' */
-  /* #swagger.parameters['body'] = {
-      in: 'body',
-      description: 'Contact data',
-      required: true,
-      schema: {
-        type: 'object',
-        properties: {
-          contact_id: { type: 'number', required: true },
-          username: { type: 'string', required: true },
-          email: { type: 'string', required: true },
-          first_name: { type: 'string' },
-          last_name: { type: 'string' },
-          birthday: { type: 'string', format: 'date' },
-          role: { type: 'string', enum: ['Developer', 'Designer', 'Administrator', 'Tester', 'Analyst'], default: 'Developer' },
-          favorite_color: { type: 'string' },
-          projects: { type: 'array', items: { type: 'string' } },
-          active: { type: 'boolean' },
-          joined_date: { type: 'string', format: 'date' },
-          last_login_ip: { type: 'string' }
-        }
-      }
-    } */
-  /* #swagger.responses[201] = { description: 'Contact created successfully' } */
-  /* #swagger.responses[500] = { description: 'Failed to create contact' } */
+
+const createContact = async (req, res, next) => {
   try {
     await contactsService.createContact(req.body);
     response.success(res, 201, "Contact created successfully");
   } catch (error) {
-    response.error(
-      res,
-      500,
-      "Failed to create contact: " + error.message,
-      error
-    );
+    if (error.code === 11000) {
+      return next({
+        name: "MongoServerError",
+        code: 11000,
+        keyPattern: error.keyPattern,
+        keyValue: error.keyValue,
+      });
+    }
+    return next(error);
   }
 };
 
-const getAllContacts = async (req, res) => {
-  // #swagger.tags = ['Contacts']
-  // #swagger.description = 'Endpoint to retrieve all contacts'
-  // #swagger.responses[200] = { description: 'Contacts retrieved successfully' }
-  // #swagger.responses[500] = { description: 'Failed to retrieve contacts' }
+const getAllContacts = async (req, res, next) => {
   try {
     const contacts = await contactsService.getAllContacts();
     response.success(res, 200, "Contacts retrieved successfully", contacts);
   } catch (error) {
-    response.error(
-      res,
-      500,
-      "Failed to retrieve contacts: " + error.message,
-      error
-    );
+    return next(error);
   }
 };
 
-const getContactById = async (req, res) => {
-  // #swagger.tags = ['Contacts']
-  // #swagger.description = 'Endpoint to retrieve a contact by id'
-  /* #swagger.parameters['contactId'] = {
-      in: 'path',
-      description: 'ID of the contact',
-      required: true,
-      type: 'number'
-    } */
-  // #swagger.responses[200] = { description: 'Contact retrieved successfully' }
-  // #swagger.responses[404] = { description: 'Contact not found' }
-  // #swagger.responses[500] = { description: 'Failed to retrieve contact' }
+const getContactById = async (req, res, next) => {
   try {
     const contact = await contactsService.getContactById(req.params.contactId);
     if (!contact) {
-      return response.error(res, 404, "Contact not found");
+      const error = new Error("Contact not found");
+      error.statusCode = 404;
+      return next(error);
     }
     response.success(res, 200, "Contact retrieved successfully", contact);
   } catch (error) {
-    response.error(
-      res,
-      500,
-      "Failed to retrieve contact: " + error.message,
-      error
-    );
+    return next(error);
   }
 };
 
-const updateContact = async (req, res) => {
-  // #swagger.tags = ['Contacts']
-  // #swagger.description = 'Endpoint to update a contact'
-  /* #swagger.parameters['_id'] = {
-      in: 'path',
-      description: 'Internal ID of the contact',
-      required: true,
-      type: 'string'
-    } */
-  /* #swagger.parameters['body'] = {
-      in: 'body',
-      description: 'Updated contact data',
-      required: true,
-      schema: {
-        type: 'object',
-        properties: {
-          username: { type: 'string', required: true },
-          email: { type: 'string', required: true },
-          first_name: { type: 'string' },
-          last_name: { type: 'string' },
-          birthday: { type: 'string', format: 'date' },
-          role: { type: 'string', enum: ['Developer', 'Designer', 'Administrator', 'Tester', 'Analyst'], default: 'Developer' },
-          favorite_color: { type: 'string' },
-          projects: { type: 'array', items: { type: 'string' } },
-          active: { type: 'boolean' },
-          joined_date: { type: 'string', format: 'date' },
-          last_login_ip: { type: 'string' }
-        }
-      }
-    } */
-  // #swagger.responses[200] = { description: 'Contact updated successfully' }
-  // #swagger.responses[404] = { description: 'Contact not found' }
-  // #swagger.responses[500] = { description: 'Failed to update contact' }
+const updateContact = async (req, res, next) => {
   try {
     const updatedContact = await contactsService.updateContact(
       req.params._id,
       req.body
     );
     if (!updatedContact) {
-      return response.error(res, 404, "Contact not found");
+      const error = new Error("Contact not found");
+      error.statusCode = 404;
+      return next(error);
     }
     response.success(res, 200, "Contact updated successfully", updatedContact);
   } catch (error) {
-    response.error(
-      res,
-      500,
-      "Failed to update contact: " + error.message,
-      error
-    );
+    return next(error);
   }
 };
 
-const replaceContact = async (req, res) => {
-  // #swagger.tags = ['Contacts']
-  // #swagger.description = 'Endpoint to replace a contact'
-  /* #swagger.parameters['_id'] = {
-      in: 'path',
-      description: 'internal ID of the contact',
-      required: true,
-      type: 'string'
-    } */
-  /* #swagger.parameters['body'] = {
-      in: 'body',
-      description: 'New contact data',
-      required: true,
-      schema: {
-        type: 'object',
-        properties: {
-          username: { type: 'string', required: true },
-          email: { type: 'string', required: true },
-          first_name: { type: 'string' },
-          last_name: { type: 'string' },
-          birthday: { type: 'string', format: 'date' },
-          role: { type: 'string', enum: ['Developer', 'Designer', 'Administrator', 'Tester', 'Analyst'], default: 'Developer' },
-          favorite_color: { type: 'string' },
-          projects: { type: 'array', items: { type: 'string' } },
-          active: { type: 'boolean' },
-          joined_date: { type: 'string', format: 'date' },
-          last_login_ip: { type: 'string' }
-        }
-      }
-    } */
-  // #swagger.responses[200] = { description: 'Contact replaced successfully' }
-  // #swagger.responses[404] = { description: 'Contact not found' }
-  // #swagger.responses[500] = { description: 'Failed to replace contact' }
+const replaceContact = async (req, res, next) => {
   try {
-    const updatedContact = await contactsService.replaceContact(
+    const replacedContact = await contactsService.replaceContact(
       req.params._id,
       req.body
     );
-    if (!updatedContact) {
-      return response.error(res, 404, "Contact not found");
+    if (!replacedContact) {
+      const error = new Error("Contact not found");
+      error.statusCode = 404;
+      return next(error);
     }
-    response.success(res, 200, "Contact replaced successfully", updatedContact);
+    response.success(res, 200, "Contact replaced successfully", replacedContact);
   } catch (error) {
-    response.error(
-      res,
-      500,
-      "Failed to replace contact: " + error.message,
-      error
-    );
+    return next(error);
   }
 };
 
-const deleteContact = async (req, res) => {
-  // #swagger.tags = ['Contacts']
-  // #swagger.description = 'Endpoint to delete a contact'
-  /* #swagger.parameters['_id'] = {
-      in: 'path',
-      description: 'internal ID of the contact',
-      required: true,
-      type: 'string'
-    } */
-  // #swagger.responses[200] = { description: 'Contact deleted successfully' }
-  // #swagger.responses[404] = { description: 'Contact not found' }
-  // #swagger.responses[500] = { description: 'Failed to delete contact' }
+const deleteContact = async (req, res, next) => {
   try {
     await contactsService.deleteContact(req.params._id);
     response.success(res, 200, "Contact deleted successfully");
   } catch (error) {
-    response.error(
-      res,
-      500,
-      "Failed to delete contact: " + error.message,
-      error
-    );
+    return next(error);
   }
 };
-const deleteAllContacts = async (req, res) => {
-  // #swagger.tags = ['Contacts']
-  // #swagger.description = 'Endpoint to delete all contacts'
-  // #swagger.responses[200] = { description: 'All contacts deleted successfully' }
-  // #swagger.responses[500] = { description: 'Failed to delete all contacts' }
+
+const deleteAllContacts = async (req, res, next) => {
   try {
     await contactsService.deleteAllContacts();
     response.success(res, 200, "All contacts deleted successfully");
   } catch (error) {
-    response.error(
-      res,
-      500,
-      "Failed to delete all contacts: " + error.message,
-      error
-    );
+    return next(error);
   }
 };
 
-const getDevelopers = async (req, res) => {
-  // #swagger.tags = ['Contacts']
-  // #swagger.description = 'Endpoint to retrieve all developers'
-  // #swagger.responses[200] = { description: 'All developers listed successfully' }
-  // #swagger.responses[404] = { description: 'Developers not found' }
-  // #swagger.responses[500] = { description: 'Failed to retrieve developers' }
+const getDevelopers = async (req, res, next) => {
   try {
     const developers = await contactsService.getDevelopers();
     if (!developers || developers.length === 0) {
-      return response.error(res, 404, "Developers not found");
+      const error = new Error("Developers not found");
+      error.statusCode = 404;
+      return next(error);
     }
     response.success(
       res,
@@ -251,12 +109,7 @@ const getDevelopers = async (req, res) => {
       developers
     );
   } catch (error) {
-    response.error(
-      res,
-      500,
-      "Failed to retrieve developers: " + error.message,
-      error
-    );
+    return next(error);
   }
 };
 

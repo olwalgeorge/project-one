@@ -7,15 +7,5 @@ function success(res, statusCode, message, data) {
   });
 }
 
-function error(res, statusCode, message, error) {
-  res.status(statusCode).json({
-    success: false,
-    message,
-    error: error ? error.message : null,
-  });
-}
 
-module.exports = {
-  success,
-  error,
-};
+module.exports = { success };

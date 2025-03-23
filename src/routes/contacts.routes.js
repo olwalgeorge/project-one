@@ -11,18 +11,19 @@ const {
   deleteContact,
   deleteAllContacts,
 } = require("../controllers/contacts.controller");
+const { validateContact } = require('../middlewares/validation.middleware');
 
 /* #swagger.tags = ['Contacts'] */
 /* #swagger.description = 'Routes for managing contacts' */
 
 routes
-  .post("/", createContact)
+  .post("/", validateContact, createContact)
   .get("/", getAllContacts)
   .get("/developer", getDevelopers)
   .get("/:contactId", getContactById)
-  .patch("/:_id", updateContact)
-  .put("/:_id", replaceContact)
-  .delete("/:_id", deleteContact)
+  .patch("/:contactId", validateContact, updateContact)
+  .put("/:contactId", validateContact, replaceContact)
+  .delete("/:contactId", deleteContact)
   .delete("/", deleteAllContacts);
 
 module.exports = routes;
