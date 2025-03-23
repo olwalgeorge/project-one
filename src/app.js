@@ -22,7 +22,7 @@ app.use(routes);
 // Connect to the database
 connectDB();
 
-// Error handling middleware should be the last middleware
+// Error handling middleware 
 app.use(errorHandler);
 
 module.exports = app;
