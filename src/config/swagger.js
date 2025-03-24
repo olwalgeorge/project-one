@@ -5,7 +5,7 @@ const doc = {
     title: "Contacts API",
     description: "API documentation for the Contacts service",
   },
-  host: "localhost:3000",
+  host: `${process.env.HOSTNAME || "localhost"}:${process.env.PORT || 3000}`,
   schemes: ["http"],
   tags: [
     {
