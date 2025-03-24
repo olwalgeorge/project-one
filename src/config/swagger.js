@@ -5,8 +5,8 @@ const doc = {
     title: "Contacts API",
     description: "API documentation for the Contacts service",
   },
-  host: `${process.env.HOSTNAME || "localhost"}:${process.env.PORT || 3000}`,
-  schemes: ["http"],
+  host: "cse341-w02-project-1.onrender.com",
+  schemes: ["https"],
   tags: [
     {
       name: "Home",
