@@ -1,6 +1,6 @@
 // middlewares/validation.middleware.js
 
-const { validateContactData } = require('../validators/contact.validator');
+const { validateContactData } = require("../validators/contact.validator");
 
 const validateContact = async (req, res, next) => {
   const data = req.body;

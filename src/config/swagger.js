@@ -1,4 +1,3 @@
-// swagger.js
 const swaggerAutogen = require("swagger-autogen")();
 
 const doc = {
@@ -6,8 +5,8 @@ const doc = {
     title: "Contacts API",
     description: "API documentation for the Contacts service",
   },
-  host: "cse341-w02-project-1.onrender.com",
-  schemes: ["https"],
+  host: "localhost:3000",
+  schemes: ["http"],
   tags: [
     {
       name: "Home",

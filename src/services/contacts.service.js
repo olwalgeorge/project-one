@@ -49,7 +49,7 @@ async function updateContact(_id, updateData) {
     return updatedContact;
   } catch (error) {
     console.error("Error updating contact:", error);
-    if (error.name === 'ValidationError') {
+    if (error.name === "ValidationError") {
       // Extract validation errors
       const validationErrors = {};
       for (const key in error.errors) {
@@ -91,7 +91,7 @@ async function deleteContact(_id) {
       error.statusCode = 404;
       throw error;
     }
-    return deletedContact
+    return deletedContact;
   } catch (error) {
     console.error("Error deleting contact:", error);
     throw error;

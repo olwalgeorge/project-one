@@ -5,7 +5,7 @@
     "description": "API documentation for the Contacts service",
     "version": "1.0.0"
   },
-  "host": "cse341-w02-project-1.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "tags": [
     {
@@ -17,15 +17,11 @@
       "description": "Endpoints related to contact operations"
     }
   ],
-  "schemes": [
-    "https"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/": {
       "get": {
-        "tags": [
-          "Home"
-        ],
+        "tags": ["Home"],
         "description": "Home page with a link to the API documentation",
         "responses": {
           "200": {
@@ -36,102 +32,766 @@
     },
     "/contacts/": {
       "post": {
-        "description": "",
+        "tags": ["Contacts"],
+        "description": "Endpoint to create a new contact",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Contact data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "contact_id": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "number"
+                        },
+                        "required": {
+                          "type": "boolean",
+                          "example": true
+                        }
+                      }
+                    },
+                    "username": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "required": {
+                          "type": "boolean",
+                          "example": true
+                        }
+                      }
+                    },
+                    "email": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "required": {
+                          "type": "boolean",
+                          "example": true
+                        }
+                      }
+                    },
+                    "first_name": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "last_name": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "birthday": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "format": {
+                          "type": "string",
+                          "example": "date"
+                        }
+                      }
+                    },
+                    "role": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "enum": {
+                          "type": "array",
+                          "example": [
+                            "Developer",
+                            "Designer",
+                            "Administrator",
+                            "Tester",
+                            "Analyst"
+                          ],
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "default": {
+                          "type": "string",
+                          "example": "Developer"
+                        }
+                      }
+                    },
+                    "favorite_color": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "projects": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "array"
+                        },
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "example": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "active": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "boolean"
+                        }
+                      }
+                    },
+                    "joined_date": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "format": {
+                          "type": "string",
+                          "example": "date"
+                        }
+                      }
+                    },
+                    "last_login_ip": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "Contact created successfully"
+          },
+          "400": {
+            "description": "Validation failed",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "object"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to create contact"
           }
         }
       },
       "get": {
-        "description": "",
+        "tags": ["Contacts"],
+        "description": "Endpoint to retrieve all contacts",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "Contacts retrieved successfully"
+          },
+          "500": {
+            "description": "Failed to retrieve contacts"
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": ["Contacts"],
+        "description": "Endpoint to delete all contacts",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "All contacts deleted successfully"
+          },
+          "500": {
+            "description": "Failed to delete all contacts"
           }
         }
       }
     },
     "/contacts/developer": {
       "get": {
-        "description": "",
+        "tags": ["Contacts"],
+        "description": "Endpoint to retrieve all developers",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "All developers listed successfully"
+          },
+          "500": {
+            "description": "Failed to retrieve developers"
           }
         }
       }
     },
     "/contacts/{contactId}": {
       "get": {
-        "description": "",
+        "tags": ["Contacts"],
+        "description": "Endpoint to retrieve a contact by ID",
         "parameters": [
           {
             "name": "contactId",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID of the contact"
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "Contact retrieved successfully"
+          },
+          "404": {
+            "description": "Contact not found"
+          },
+          "500": {
+            "description": "Failed to retrieve contact"
           }
         }
-      },
+      }
+    },
+    "/contacts/{_id}": {
       "patch": {
-        "description": "",
+        "tags": ["Contacts"],
+        "description": "Endpoint to update a contact",
         "parameters": [
           {
-            "name": "contactId",
+            "name": "_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "internal ID of the contact"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Updated contact data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "contact_id": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "number"
+                        }
+                      }
+                    },
+                    "username": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "email": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "first_name": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "last_name": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "birthday": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "format": {
+                          "type": "string",
+                          "example": "date"
+                        }
+                      }
+                    },
+                    "role": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "enum": {
+                          "type": "array",
+                          "example": [
+                            "Developer",
+                            "Designer",
+                            "Administrator",
+                            "Tester",
+                            "Analyst"
+                          ],
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "default": {
+                          "type": "string",
+                          "example": "Developer"
+                        }
+                      }
+                    },
+                    "favorite_color": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "projects": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "array"
+                        },
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "example": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "active": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "boolean"
+                        }
+                      }
+                    },
+                    "joined_date": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "format": {
+                          "type": "string",
+                          "example": "date"
+                        }
+                      }
+                    },
+                    "last_login_ip": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "Contact patched successfully"
+          },
+          "400": {
+            "description": "Validation failed",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "object"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Contact not found"
+          },
+          "500": {
+            "description": "Failed to update contact"
           }
         }
       },
       "put": {
-        "description": "",
+        "tags": ["Contacts"],
+        "description": "Endpoint to replace a contact",
         "parameters": [
           {
-            "name": "contactId",
+            "name": "_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "internal ID of the contact"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "New contact data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "contact_id": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "number"
+                        }
+                      }
+                    },
+                    "username": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "email": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "first_name": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "last_name": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "birthday": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "format": {
+                          "type": "string",
+                          "example": "date"
+                        }
+                      }
+                    },
+                    "role": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "enum": {
+                          "type": "array",
+                          "example": [
+                            "Developer",
+                            "Designer",
+                            "Administrator",
+                            "Tester",
+                            "Analyst"
+                          ],
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "default": {
+                          "type": "string",
+                          "example": "Developer"
+                        }
+                      }
+                    },
+                    "favorite_color": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "projects": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "array"
+                        },
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "example": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "active": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "boolean"
+                        }
+                      }
+                    },
+                    "joined_date": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "format": {
+                          "type": "string",
+                          "example": "date"
+                        }
+                      }
+                    },
+                    "last_login_ip": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "Contact replaced successfully"
+          },
+          "400": {
+            "description": "Validation failed",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "object"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Contact not found"
+          },
+          "500": {
+            "description": "Failed to replace contact"
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": ["Contacts"],
+        "description": "Endpoint to delete a contact",
         "parameters": [
           {
-            "name": "contactId",
+            "name": "_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "internal ID of the contact"
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "Contact deleted successfully"
+          },
+          "404": {
+            "description": "Contact not found"
+          },
+          "500": {
+            "description": "Failed to delete contact"
           }
         }
       }

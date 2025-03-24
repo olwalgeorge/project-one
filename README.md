@@ -35,15 +35,15 @@ Get all contacts.
 
 Get contact by ID.
 
-### PATCH /contacts/:_Id
+### PATCH /contacts/:\_Id
 
 Update contact by ID.
 
-### PUT /contacts/:_id
+### PUT /contacts/:\_id
 
 Update contact by ID using PUT.
 
-### DELETE /contacts/:_id
+### DELETE /contacts/:\_id
 
 Delete contact by ID.
 

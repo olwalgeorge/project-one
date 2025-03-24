@@ -1,7 +1,6 @@
 const contactsService = require("../services/contacts.service");
 const response = require("../utils/response");
 
-
 const createContact = async (req, res, next) => {
   try {
     await contactsService.createContact(req.body);
@@ -70,7 +69,12 @@ const replaceContact = async (req, res, next) => {
       error.statusCode = 404;
       return next(error);
     }
-    response.success(res, 200, "Contact replaced successfully", replacedContact);
+    response.success(
+      res,
+      200,
+      "Contact replaced successfully",
+      replacedContact
+    );
   } catch (error) {
     return next(error);
   }
